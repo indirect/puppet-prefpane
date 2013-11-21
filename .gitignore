@@ -1,0 +1,6 @@
+/.bundle
+/.ruby-version
+/spec/fixtures/.librarian
+/spec/fixtures/.tmp
+/spec/fixtures/Puppetfile.lock
+/spec/fixtures/vendor

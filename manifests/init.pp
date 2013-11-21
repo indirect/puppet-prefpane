@@ -1,0 +1,1 @@
+# this module only defines the prefpane type
