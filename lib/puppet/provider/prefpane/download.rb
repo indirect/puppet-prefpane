@@ -11,6 +11,7 @@ Puppet::Type.type(:prefpane).provide(:download) do
   commands :ditto   => "ditto"
   commands :hdiutil => "hdiutil"
   commands :rm      => "rm"
+  commands :tar     => "tar"
 
   def self.instances
     return [] unless File.exist?(receipt_path)
@@ -62,8 +63,10 @@ Puppet::Type.type(:prefpane).provide(:download) do
     case source_ext
     when "zip"
       ditto "-xk", cached_source, temp_dir
-    #when "tgz", "tar.gz"
-    #when "tbz", "tar.bz"
+    when "tgz", "tar.gz"
+      tar "-zxf", cached_source, temp_dir
+    when "tbz", "tar.bz"
+      tar "-jxf", cached_source, temp_dir
     when "dmg"
       temp_dmg = File.join(temp_dir, @resource[:name])
       hdiutil "convert", cached_source, "-format", "UDTO", "-o", temp_dmg
