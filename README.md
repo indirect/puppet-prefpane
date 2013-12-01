@@ -13,3 +13,7 @@ prefpane { 'MenuMeters':
   source => 'http://www.ragingmenace.com/software/download/MenuMeters.dmg',
 }
 ```
+
+### Requirements
+
+Currently expects Facter to provide the `boxen_user` fact.
