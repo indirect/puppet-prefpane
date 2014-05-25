@@ -79,6 +79,10 @@ Puppet::Type.type(:prefpane).provide(:download) do
     # copy into PreferencePanes
     path_parts = [(mount || temp_dir), (@resource[:path] || '**'), "#{@resource[:name]}.prefPane"]
     prefpane_path = Dir[File.join(*path_parts.compact)][0]
+    target = self.class.prefpanes_path
+    if !Dir.exists? target then
+      Dir.mkdir target
+    end
     cp "-a", prefpane_path, self.class.prefpanes_path
 
     # ensure ownership by user
